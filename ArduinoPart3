@@ -1,0 +1,27 @@
+#include <Arduino.h>
+/* Arduino Serial Command Program - Derek Molloy (www.derekmolloy.ie)
+*   for the book Exploring Raspberry Pi */
+
+int ledPin = 11;          // LED with PWM brightness control
+int MSG_LEN = 2;
+uint8_t msg[2];
+void setup() {            // called once on start up
+   Serial.begin(9600, SERIAL_8N1);
+   pinMode(ledPin, OUTPUT);         // the LED is an output
+   
+}
+
+void loop() {              // loops forever
+   int command;
+   char buffer[100];       // stores the return buffer on each loop   
+   if (Serial.available()>0){// bytes received
+      Serial.readBytes(msg, MSG_LEN);
+      //Serial.println(msg[1]);
+      if(msg[1]>=0 && msg[1]<=255){   //Watching that the value is within parameters
+        analogWrite(ledPin, msg[1]);       // yes, write out
+        sprintf(buffer, "Set brightness to %d", msg[1]);
+      }
+      else{sprintf(buffer, "Unknown command: %s", msg[1]); }
+      Serial.println(buffer);               // send the buffer to the RPi*/
+   }  
+}
