@@ -27,6 +27,7 @@ int main(int argc, char *argv[]){
 
    options.c_cflag = B9600 | CS8 | CREAD | CLOCAL;
    options.c_iflag = IGNPAR | ICRNL;
+   options.c_lflag &= ~ (ECHO | ICANON);
    tcflush(file, TCIFLUSH);
    tcsetattr(file, TCSANOW, &options);
 
