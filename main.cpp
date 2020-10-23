@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
    }
 
    if (count==0) printf("There was no data available to read!\n");
-   else {
+   else { 
       receive[count]=0;  //There is no null character sent by the Arduino
       printf("The following was read in [%d]: %s\n",count,receive);
    }
