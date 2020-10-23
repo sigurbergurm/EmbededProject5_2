@@ -1,2 +1,2 @@
 all:
-	g++ -o RunProg main.cpp 
+	g++ -o RunProg part3.cpp 
